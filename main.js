@@ -77,6 +77,13 @@ async function serverInit(swc){
 
 		var now = Moment().format('lll');
 
+		while(data.indexOf('<img') > 0) {
+			data = data.replace(/<img/g, '');
+		}
+		while(data.indexOf('<nick') > 0) {
+			data = data.replace(/<nick/g, '');
+		}
+
 		/**
 		* 拼接
 		*/
