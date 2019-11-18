@@ -80,8 +80,8 @@ async function serverInit(swc){
 		while(data.indexOf('<img') > 0) {
 			data = data.replace(/<img/g, '');
 		}
-		while(data.indexOf('<nick') > 0) {
-			data = data.replace(/<nick/g, '');
+		while(data.indexOf('<script') > 0) {
+			data = data.replace(/<\/script/g, '');
 		}
 
 		/**
