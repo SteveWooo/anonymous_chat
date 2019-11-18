@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		input {
+			width : 100px;
+			height : 18px;
+			line-height: 18px;
+			border-radius: 5px;
+			border : 1px solid #eee;
+			padding : 10px 10px 10px 10px;
+			color : #666;
+		}
+		#data {
+			height : 150px;
+			width : 500px;
+			padding : 10px 10px 10px 10px;
+			color : #666;
+			border : 1px solid #eee;
+			border-radius: 5px;
+		}
+
+		#submit {
+			background-color: #4285f4;
+			color : #fff;
+			border-radius: 5px;
+			border:0;
+			width : 100px;
+			height : 30px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h2>
+			匿名版
+			<span style="color:#999;
+				margin-left: 20px;
+				font-size:10px">
+				裸奔无防，禁止玩蛇，欢迎版聊提bug
+			</span>
+		</h2>
+	</div>
+	<div style="background-color:#eee;width:100%;height:1px;margin-bottom:10px"></div>
+	<div>
+		<div></div>
+		<span>
+			昵称：
+		</span>
+		<input style="font-size : 16px;" 
+			id="nick" placeholder="anonymous">
+		<div>
+			<textarea style="font-size : 16px;margin-top: 5px;"
+			id="data" placeholder="消息"></textarea>
+			<button id="submit" onclick="submit()">提交</button>
+		</div>
+	</div>
+	<div id="chat">
+		
+	</div>
+
+	<div style="position:fixed;bottom:0;right: 10px;color:#555">
+		@2019
+		<span style="color:#999">
+			Anonymous
+		</span>
+	</div>
+</body>
+<script type="text/javascript" src="dist/jquery.min.js"></script>
+<script type="text/javascript">
+	function submit(){
+		var data = $('#data').val();
+		var nick = $('#nick').val();
+		$.ajax({
+			url : '/api/submit?data=' + data + '&nick=' + nick,
+			success : function(res){
+				$('#data').val('');
+			}
+		})
+	}
+
+	var bussiness = {
+		getList : function(){
+			$.ajax({
+				url : '/api/get_list',
+				success : function(res){
+					$('#chat').html(res);
+				}
+			})
+		},
+		refresh : function(){
+
+			bussiness.getList();
+		}
+	}
+	bussiness.refresh()
+	setInterval(function(){
+		bussiness.refresh()
+	}, 1000);
+	
+</script>
+</html>
