@@ -2,5 +2,10 @@ const fs = require('fs');
 
 var chat = fs.readFileSync(`${__dirname}/../data/data.chat`).toString();
 
-chat = chat.replace(/<img/g, '');
-fs.writeFileSync(`${__dirname}/../data/data.chat`, chat);
+setInterval(function(){
+		chat = chat.replace(/<img/g, '');
+	chat = chat.replace(/</g, '');
+	chat = chat.replace(/>/g, '');
+	fs.writeFileSync(`${__dirname}/../data/data.chat`, chat);
+	console.log(`${new Date()} clean`);
+}, 5000);
