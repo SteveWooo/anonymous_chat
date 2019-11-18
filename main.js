@@ -80,7 +80,7 @@ async function serverInit(swc){
 		/**
 		* 拼接
 		*/
-		var string = `(${now}) <font style="color:red">${nick}</font> : ${data}`;
+		var string = `<span>(${now})</span> <font style="color:red">${nick}</font> : ${data}`;
 		file.unshift(string);
 		fs.writeFileSync(`${__dirname}/${swc.Config.path.data}`, file.join('\n'));
 		res.send('ok');
