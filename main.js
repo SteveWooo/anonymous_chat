@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const Moment = require('moment');
+const Xss = require('xss');
 
 async function init(){
 	var swc = {
@@ -66,8 +67,8 @@ async function serverInit(swc){
 		next();
 	}, async function(req, res) {
 		var swc = req.swc;
-		var data = req.query.data;
-		var nick = req.query.nick;
+		var data = Xss(req.query.data);
+		var nick = Xss(req.query.nick);
 		var ip = await swc.utils.getClientIp(swc, req);
 		if(!nick) {
 			nick = 'anonymous';
