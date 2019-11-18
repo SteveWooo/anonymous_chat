@@ -42,8 +42,8 @@ async function init(){
 }
 
 async function serverInit(swc){
-	swc.app.use('/public', express.static('public'));
-	swc.app.get('/api/get_list', async function(req, res, next){
+	swc.app.use('/anonymous', express.static('public'));
+	swc.app.get('/api/anonymous/get_list', async function(req, res, next){
 		req.swc = swc;
 		next();
 	}, async function(req, res) {
@@ -61,7 +61,7 @@ async function serverInit(swc){
 		res.send(result.join(''));
 	})
 
-	swc.app.get('/api/submit', async function(req, res, next){
+	swc.app.get('/api/anonymous/submit', async function(req, res, next){
 		req.swc = swc;
 		next();
 	}, async function(req, res) {

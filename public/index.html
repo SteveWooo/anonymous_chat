@@ -82,7 +82,7 @@
 		var data = $('#data').val();
 		var nick = $('#nick').val();
 		$.ajax({
-			url : '/api/submit?data=' + data + '&nick=' + nick,
+			url : '/api/anonymous/submit?data=' + data + '&nick=' + nick,
 			success : function(res){
 				$('#data').val('');
 			}
@@ -92,7 +92,7 @@
 	var bussiness = {
 		getList : function(){
 			$.ajax({
-				url : '/api/get_list',
+				url : '/api/anonymous/get_list',
 				success : function(res){
 					$('#chat').html(res);
 				}
